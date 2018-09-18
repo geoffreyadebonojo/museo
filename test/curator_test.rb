@@ -194,9 +194,23 @@ class CuratorTest < Minitest::Test
     @curator.load_photographs('./data/photographs.csv')
     @curator.load_artists('./data/artists.csv')
 
+    assert_instance_of Photograph, @curator.photographs.first
     assert_equal 4, @curator.photographs.count
+
+    assert_instance_of Artist, @curator.artists.first
     assert_equal 6, @curator.artists.count
     
+  end
+
+  def test_it_can_find_PHOTOS_in_range
+    @curator.load_photographs('./data/photographs.csv')
+    @curator.load_artists('./data/artists.csv')
+
+
+    matches = @curator.photographs_taken_between(1950..1965)
+
+    assert_equal "Rue Mouffetard, Paris (Boy with Bottles)", matches[0].name
+    assert_equal "Child with Toy Hand Grenade in Central Park", matches[1].name
   end
 
 
