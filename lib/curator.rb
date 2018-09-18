@@ -3,6 +3,8 @@ require './lib/artist'
 require 'pry'
 
 require './lib/file_io'
+require 'date'
+
 
 class Curator
 
@@ -46,7 +48,6 @@ class Curator
   end
 
   def photographs_taken_by_artists_from(country)
-   
     artists_from = @artists.find_all do |artist|
       artist.country == country
     end
@@ -80,5 +81,15 @@ class Curator
       photo.year.to_i < range.end && photo.year.to_i > range.begin
     end
     photos_in_range
+  end
+
+  def artists_photographs_by_age(artist)
+    photos = find_photographs_by_artist(artist)
+    date = Date.today
+    hash = Hash.new(0)
+    photos.each do |photo|
+      hash[photo.year.to_i - artist.born.to_i] = photo.name
+    end
+    hash
   end
 end

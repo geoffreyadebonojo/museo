@@ -211,6 +211,12 @@ class CuratorTest < Minitest::Test
 
     assert_equal "Rue Mouffetard, Paris (Boy with Bottles)", matches[0].name
     assert_equal "Child with Toy Hand Grenade in Central Park", matches[1].name
+
+    diane_arbus = @curator.find_artist_by_id("3")
+
+    expected = {44=>"Identical Twins, Roselle, New Jersey", 39=>"Child with Toy Hand Grenade in Central Park"}
+
+    assert_equal expected, @curator.artists_photographs_by_age(diane_arbus) 
   end
 
 
