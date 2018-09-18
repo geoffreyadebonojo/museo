@@ -118,9 +118,9 @@ class CuratorTest < Minitest::Test
     @curator.add_photograph(photo_1)
     @curator.add_photograph(photo_2)
     
-    entry = @curator.find_photograph_by_id("1")
-    assert_equal "1", entry.id
-    assert_equal "Rue Mouffetard, Paris (Boy with Bottles)", entry.name
+    entry = @curator.find_photograph_by_id("2")
+    assert_equal "2", entry.id
+    assert_equal "Moonrise, Hernandez", entry.name
   end
 
 
