@@ -190,7 +190,14 @@ class CuratorTest < Minitest::Test
     assert_equal [], curator.photographs_taken_by_artists_from("Argentina")
   end
 
+  def test_it_can_load
+    @curator.load_photographs('./data/photographs.csv')
+    @curator.load_artists('./data/artists.csv')
 
+    assert_equal 4, @curator.photographs.count
+    assert_equal 6, @curator.artists.count
+    
+  end
 
 
 end
