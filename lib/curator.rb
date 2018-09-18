@@ -5,7 +5,7 @@ class Curator
 
   attr_reader :artists, :photographs
 
-  def initialize(attributes)
+  def initialize
     @artists = []
     @photographs = []
   end
@@ -27,6 +27,12 @@ class Curator
   def find_photograph_by_id(id)
     @photographs.find do |photo|
       photo.id == id
+    end
+  end
+
+  def find_photographs_by_artist(artist)
+    @photographs.find_all do |photo|
+      photo.artist_id == artist.id
     end
   end
   
