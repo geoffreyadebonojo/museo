@@ -120,7 +120,7 @@ class CuratorTest < Minitest::Test
     assert_equal "Moonrise, Hernandez", entry.name
   end
 
-  def test_it_FINDS_photos_by_artist
+  def test_it_FINDS_photos
     photo_1 = {
       id: "1",
       name: "Rue Mouffetard, Paris (Boy with Bottles)",
@@ -182,6 +182,12 @@ class CuratorTest < Minitest::Test
     
     artists = curator.artists_with_multiple_photographs
     assert_equal diane_arbus, artists.first
+
+    
+    actual = curator.photographs_taken_by_artists_from("United States").first.name
+    assert_equal "Moonrise, Hernandez", actual
+
+    assert_equal [], curator.photographs_taken_by_artists_from("Argentina")
   end
 
 

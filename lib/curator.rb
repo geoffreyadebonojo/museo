@@ -1,6 +1,6 @@
 require './lib/photograph'
 require './lib/artist'
-
+require 'pry'
 class Curator
 
   attr_reader :artists, :photographs
@@ -40,6 +40,21 @@ class Curator
     @artists.find_all do |artist|
       find_photographs_by_artist(artist).count > 1
     end
+  end
+
+  def photographs_taken_by_artists_from(country)
+   
+    artists_from = @artists.find_all do |artist|
+      artist.country == country
+    end
+
+    artist_ids = artists_from.map do |artist|
+      artist.id
+    end
+    
+    @photographs.keep_if do |photo|
+      artist_ids.include?(photo.artist_id)
+    end 
   end
   
 end
