@@ -176,20 +176,15 @@ class CuratorTest < Minitest::Test
     curator.add_artist(artist_2)
     curator.add_artist(artist_3)
     diane_arbus = curator.find_artist_by_id("3")
-    curator.find_photographs_by_artist(diane_arbus)
+
+    diane_photos = curator.find_photographs_by_artist(diane_arbus)
+    assert_equal 2, diane_photos.count
+    
+    artists = curator.artists_with_multiple_photographs
+    assert_equal diane_arbus, artists.first
   end
 
 
-  def test_it_FINDS_artists_with_multiple_photos
-
-
-  end
-
-
-  def test_it_FINDS_photos_taken_by_artists_from_place
-
-
-  end
 
 
 end
